@@ -1,0 +1,25 @@
+<ul>
+  <li class="bleu">*Message non lu</li>
+  <li class="rouge">*Message lu</li>
+</ul>
+
+
+<div class="nav flex-column nav-pills je_tente" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+  <strong>~~Email~~</strong>
+    <% @emails.each do |email| %>
+            <a class="nav-link" onclick="texte1" id="<%= email.id %>" data-toggle="pill" href="#<%= email.object %>" role="tab" aria-controls="v-pills-home" aria-selected="true"><%= email.object %></a>
+    <% end %>
+</div>
+
+<div class="tab-content" id="v-pills-tabContent">
+  <% @emails.each do |email| %>
+    <div class="tab-pane fade" id="<%= email.object %>" role="tabpanel">
+      <tr id="<%= email.id %>">
+        <td><span>Objet</span> : <strong><%= email.object %></strong></td><br/>
+        <td><span>Message</span> : <%= email.body %></td><br />
+        <td><%= link_to 'Supprimer', email, method: :delete, data: { confirm: 'Vous êtes sûr?' }, :remote => true, :class => 'delete' %></td>
+      </tr>
+<!--      <%= button_to "delete", {:controller => :email, :action => 'destroy', :id => email.id }, :method => :delete %> -->
+    </div>
+  <% end %>
+</div>
